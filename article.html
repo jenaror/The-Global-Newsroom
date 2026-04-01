@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Global Newsroom</title>
+    </head>
+<body>
+    <header>
+        <h1 class="logo"><a href="index.html" style="color:white; text-decoration:none;">The Global Newsroom</a></h1>
+    </header>
+
+    <div class="container">
+        <main style="display: block; max-width: 800px; margin: 0 auto;" id="full-article-container">
+            <h2>Loading...</h2>
+        </main>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // 1. Get the article ID from the URL (e.g., ?id=pickle-ban)
+            const urlParams = new URLSearchParams(window.location.search);
+            const articleId = urlParams.get('id');
+
+            if (!articleId) {
+                document.getElementById('full-article-container').innerHTML = '<h2>Article not found.</h2>';
+                return;
+            }
+
+            // 2. Fetch the JSON and find the right article
+            fetch('articles.json')
+                .then(response => response.json())
+                .then(articles => {
+                    const article = articles.find(a => a.id === articleId);
+
+                    if (article) {
+                        // 3. Inject the data into the page
+                        document.title = `${article.title} - The Global Newsroom`;
+                        document.getElementById('full-article-container').innerHTML = `
+                            <div class="meta">${article.category} &bull; ${article.date}</div>
+                            <h1 style="font-size: 2.5rem; margin-bottom: 20px;">${article.title}</h1>
+                            <img src="${article.image}" style="width: 100%; height: auto; margin-bottom: 30px;" alt="Article Image">
+                            <div style="font-size: 1.1rem; line-height: 1.8;">
+                                ${article.content}
+                            </div>
+                        `;
+                    } else {
+                        document.getElementById('full-article-container').innerHTML = '<h2>Article not found.</h2>';
+                    }
+                });
+        });
+    </script>
+</body>
+</html>
