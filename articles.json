@@ -1,0 +1,22 @@
+[
+  {
+    "id": "eo-9921-pickle-ban",
+    "title": "Executive Order 9921: Administration Issues Immediate Moratorium on Cucumis Sativus (Pickles)",
+    "category": "Politics",
+    "teaser": "In an unprecedented move, the administration has classified fermented and brined cucumbers as a Category 3 Agricultural Hazard, effectively banning them nationwide.",
+    "content": "<p>In an unprecedented move late Tuesday evening, the administration signed Executive Order 9921...</p><p>Officials cite obscure 19th-century trade laws and sudden concerns over sodium oxidation rates. Grocery chains have been given 48 hours to clear their shelves or face heavy federal fines.</p>",
+    "image": "https://via.placeholder.com/800x400?text=Official+Podium",
+    "date": "April 1, 2026",
+    "featured": true
+  },
+  {
+    "id": "market-supply-chain",
+    "title": "Global Markets React to Unprecedented Supply Chain Shifts",
+    "category": "Markets",
+    "teaser": "Traders are scrambling as new agricultural restrictions send shockwaves through the commodities exchange.",
+    "content": "<p>Lorem ipsum dolor sit amet...</p>",
+    "image": "https://via.placeholder.com/400x250?text=Stock+Market",
+    "date": "April 1, 2026",
+    "featured": false
+  }
+]
