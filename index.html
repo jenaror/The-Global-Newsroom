@@ -96,13 +96,25 @@
                         <div>
                             <div class="meta">${art.category}</div>
                             <h2><a href="article.html?id=${art.id}" style="color:inherit; text-decoration:none;">${art.title}</a></h2>
-                            <h3>"Date"</h3>
+                            <p id="date-display"></p>
                             <p>${art.teaser}</p>
                         </div>
                     `;
                     container.appendChild(el);
                 });
             });
+    </script>
+    <script>
+        //date collector
+          const today = new Date();
+          const options = { 
+            weekday: 'long', 
+            year: 'numeric', 
+            month: 'long', 
+            day: 'numeric' 
+        };
+          const formattedDate = today.toLocaleDateString('en-US', options);
+        document.getElementById('date-display').textContent = formattedDate;
     </script>
 </body>
 </html> 
