@@ -5,49 +5,59 @@
     <title>The Global Newsroom</title>
     </head>
 <body>
+
+    <div class="top-nav-bar">Wednesday, April 1, 2026 &nbsp;|&nbsp; Breaking News: Executive Order 9921 Issued</div>
+
     <header>
-        <h1 class="logo"><a href="index.html" style="color:white; text-decoration:none;">The Global Newsroom</a></h1>
+        <a href="index.html" class="logo-container">
+            <span class="logo-main">The Global Newsroom</span>
+            <span class="logo-sub">Truth Across Borders</span>
+        </a>
+        <nav>
+            <a href="#">US</a>
+            <a href="#">Americas</a>
+            <a href="#">Europe</a>
+            <a href="#">Asia</a>
+            <a href="#">Africa</a>
+        </nav>
     </header>
 
+
+    
     <div class="container">
-        <main style="display: block; max-width: 800px; margin: 0 auto;" id="full-article-container">
-            <h2>Loading...</h2>
+        <main style="display:block; max-width:800px; margin:0 auto;" id="full-article">
+            <p>Loading the latest reports...</p>
         </main>
     </div>
 
+    <footer>
+        <div style="margin-bottom: 20px;">
+            <a href="#">About</a> <a href="#">Contact</a> <a href="#">Privacy</a> <a href="#">Archives</a>
+        </div>
+        <p>&copy; 2026 The Global Newsroom. All rights reserved. Registered Trademark.</p>
+    </footer>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // 1. Get the article ID from the URL (e.g., ?id=pickle-ban)
-            const urlParams = new URLSearchParams(window.location.search);
-            const articleId = urlParams.get('id');
-
-            if (!articleId) {
-                document.getElementById('full-article-container').innerHTML = '<h2>Article not found.</h2>';
-                return;
-            }
-
-            // 2. Fetch the JSON and find the right article
-            fetch('articles.json')
-                .then(response => response.json())
-                .then(articles => {
-                    const article = articles.find(a => a.id === articleId);
-
-                    if (article) {
-                        // 3. Inject the data into the page
-                        document.title = `${article.title} - The Global Newsroom`;
-                        document.getElementById('full-article-container').innerHTML = `
-                            <div class="meta">${article.category} &bull; ${article.date}</div>
-                            <h1 style="font-size: 2.5rem; margin-bottom: 20px;">${article.title}</h1>
-                            <img src="${article.image}" style="width: 100%; height: auto; margin-bottom: 30px;" alt="Article Image">
-                            <div style="font-size: 1.1rem; line-height: 1.8;">
-                                ${article.content}
-                            </div>
-                        `;
-                    } else {
-                        document.getElementById('full-article-container').innerHTML = '<h2>Article not found.</h2>';
-                    }
-                });
-        });
+        const params = new URLSearchParams(window.location.search);
+        const id = params.get('id');
+        
+        fetch('articles.json')
+            .then(res => res.json())
+            .then(data => {
+                const art = data.find(a => a.id === id);
+                if(art) {
+                    document.title = art.title + " | GNR";
+                    document.getElementById('full-article').innerHTML = `
+                        <div class="meta">${art.category} &bull; ${art.date}</div>
+                        <h1 style="font-size: 3.5rem; line-height: 1.1;">${art.title}</h1>
+                        <hr style="border:0; border-top:1px solid #ddd; margin: 20px 0;">
+                        <img src="${art.image}" style="width:100%; margin-bottom:20px;">
+                        <div style="font-size: 1.2rem; line-height: 1.8; font-family: 'Georgia', serif;">
+                            ${art.content}
+                        </div>
+                    `;
+                }
+            });
     </script>
 </body>
 </html>
